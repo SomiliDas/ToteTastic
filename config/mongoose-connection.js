@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
-let DBURL = require("../.env")
+const dbgr = require("debug")("development:mongoose") 
+const config = require("config")
 
-mongoose.connect(DBURL)
+
+mongoose.connect(`${config.get("MONGODB_URI")}/ToteTastic`)
 .then(()=>{
-    console.log("connected")
+    dbgr("connected")
 })
 .catch((err)=>{
-    console.log(err)
+    dbgr(err)
 })
 
 module.exports = mongoose.connection
