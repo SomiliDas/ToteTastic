@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
+let DBURL = require("../.env")
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/ToteTastic')
+mongoose.connect(DBURL)
 .then(()=>{
     console.log("connected")
 })
