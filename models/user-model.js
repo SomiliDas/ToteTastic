@@ -18,15 +18,12 @@ let userSchema = mongoose.Schema({
             type : Array,
             default: []
     },
-
-    isadmin : Boolean,
     orders : {
             type : Array,
             default: []
     },
     contact : {
-        type : Number,
-        required : true
+        type : Number
     },
     picture : String
 
