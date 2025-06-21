@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="bg-white w-full min-h-screen">
+        <div class=" pl-10 pr-20 pt-10 pb-5 border-b-2 border-gray-400 flex justify-between items-center ">
+            <div>
+                <p class="text-[40px]">Admin Panel.</p>
+            </div>
+            <div class="flex justify-between items-center gap-30 font-semibold text-[18px] cursor-pointer">
+                <div class="flex justify-between items-center gap-10">
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">Products</a></p>
+                </div>
+
+                <div class="flex justify-between items-center gap-10">
+                    <p><a href="#">Cart</a></p>
+                    <p><a href="#">My Account</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-[20%_75%] gap-[5%] mt-5 p-10 ">
+            <div class="p-2 ">
+                <p class="text-gray-400 my-4">All Products</p>
+                <p class="font-semibold">Create New Product</p>
+            </div>
+            <div>
+                <div class="text-[25px] font-semibold p-2 pb-5 border-b-2 border-gray-300">
+                    Create New Product
+                </div>
+                <form action="/owners/product/create" method="post" enctype="multipart/form-data">
+                    <div class="mt-5 p-2">
+                        <p class="text-[20px] font-semibold mb-4">Product Details</p>
+
+                        
+                            <div class="flex gap-4 items-center">
+                                <label>Product Image</label>
+                                <input type="file" name="image" class="p-1 my-2 w-[90px] rounded-2xl bg-blue-500 text-white font-semibold cursor-pointer"/>
+                            </div>
+                            <input type="text" name="name" placeholder="Product Name" class="bg-zinc-200 rounded-lg p-2 mt-2 w-[30%] "/>
+                            <div class="my-2 flex gap-[3%] items-center w-[30%]">
+                                <input type="text" name="price" placeholder="Product Price" class="bg-zinc-200 rounded-lg p-2 w-[48%] "/>
+                                <input type="text" name="discount" placeholder="Product Discount" class="bg-zinc-200 rounded-lg p-2 w-[48%] "/>
+                            </div>
+                        
+                    </div>
+                    <div class="mt-5 p-2">
+                        <p class="text-[20px] font-semibold mb-5">Panel Details</p>
+
+                        
+                            <div class="mt-2 flex gap-[3%] items-center w-[30%]">
+                                <input type="text" name="bgcolor" placeholder="Background Color" class="bg-zinc-200 rounded-lg p-2 w-[48%] "/>
+                                <input type="text" name="panelcolor" placeholder="Panel Color" class="bg-zinc-200 rounded-lg p-2 w-[48%] "/>
+                            </div>
+                            <input type="text" name="textcolor" placeholder="Text Color" class="bg-zinc-200 rounded-lg p-2 mt-2 w-[14%] "/>
+                        
+                    </div>
+                    <div class="p-2">
+                        <input type="submit" value="Create New Product" class="bg-blue-500 p-2 text-white font-semibold rounded-lg cursor-pointer"/>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

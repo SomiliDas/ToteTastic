@@ -3,39 +3,27 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 
 let ownerModel = require("../models/owner-model")
+const { createAdmin } = require("../controllers/authController")
+const createProduct = require("../controllers/productController")
 
+const isLoggedIn = require("../middlewares/isLoggedIn")
+const upload = require("../config/multer")
 
 
 if(process.env.NODE_ENV === "development"){
-    router.post("/create", async(req,res)=>{
-        let {fullname, email, password} = req.body
-        let owners = await ownerModel.find()
-        if(owners.length > 0){
-            res.status(500).send("Access Denied!")
-        }
-        else{
-            bcrypt.genSalt(10, (err, salt)=>{
-                bcrypt.hash(password, salt, async(err, hash)=>{
-                    let createdOwner =await ownerModel.create({
-                                                fullname,
-                                                email,
-                                                password : hash
-                                            })
-                    res.status(200).send(createdOwner)
-                })
-            })
-        }
-        
-    })
+    router.post("/create", createAdmin)
 }
 
-
-
-
-
-router.get("/", (req, res)=>{
-    res.send("hello owner")
+router.get("/admin", (req, res)=>{
+    res.render("create-products")
 })
+
+
+router.post("/product/create", upload.single("image"), createProduct)
+
+
+
+
 
 
 

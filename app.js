@@ -13,7 +13,7 @@ const db = require("./config/mongoose-connection")
 const ownersRouter = require("./routes/ownersRouter")
 const usersRouter = require("./routes/usersRouter")
 const productsRouter = require("./routes/productsRouter")
-const sign = require("./routes/index")
+const indexRouter = require("./routes/index")
 
 app.set("view engine", "ejs")
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 
 
-app.use("/", sign)
+app.use("/", indexRouter)
 app.use("/owners", ownersRouter)
 app.use("/users", usersRouter)
 app.use("/products", productsRouter)
