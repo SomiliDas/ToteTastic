@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 
 let ownerModel = require("../models/owner-model")
 const { createAdmin } = require("../controllers/authController")
-const createProduct = require("../controllers/productController")
+const {createProduct} = require("../controllers/productController")
 
 const isLoggedIn = require("../middlewares/isLoggedIn")
 const upload = require("../config/multer")

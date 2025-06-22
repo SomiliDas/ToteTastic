@@ -1,5 +1,6 @@
 
 const productModel =  require("../models/product-model")
+const userModel =  require("../models/user-model")
 
 
 let createProduct = async(req, res)=>{
@@ -23,4 +24,21 @@ let createProduct = async(req, res)=>{
 }
 
 
-module.exports = createProduct
+let addToCart = async(req, res)=>{
+    try{
+        let user = await userModel.findOne({email : req.user.email})
+        let id = req.params.id
+        user.cart.push(id)
+        await user.save()
+        res.status(200).redirect("/shop")
+    } catch(err){
+        res.status(500).send(err.message)
+    }
+
+}
+
+
+
+
+
+module.exports = {createProduct, addToCart}

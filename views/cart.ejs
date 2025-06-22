@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-white p-8">
+        <div class="px-8 py-2 mb-5 w-full ">
+            <ul class ="flex justify-end items-center gap-10">
+                <li class="text-[17px] font-bold cursor-pointer text-black"><a href="/shop">Shop</a></li>
+                <li class="text-[17px] font-bold cursor-pointer text-black"><a href="/cart">Cart</a></li>
+                <li class="text-[17px] font-bold cursor-pointer text-black"><a href="#">My Account</a></li>
+                <li class="text-[17px] font-bold cursor-pointer text-red-900"><a href="/users/logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="grid grid-cols-[30%_68%] gap-[2%] px-15">
+
+            <div class="w-full p-2  ">
+                <div class="bg-yellow-500 w-full h-[320px] mb-5">
+                    <img src="data:<%= product.imageType %>;base64,<%= product.image.toString('base64') %>" class="w-full h-full object-cover"/>
+                </div>
+                <div class="flex justify-between items-center font-bold mb-5">
+                    <p class="text-[20px]"><%= product.name%></p>
+                    <p class="flex gap-3"> <a class="cursor-pointer" href="#">+</a> <span>01</span> <a class="cursor-pointer" href="#">-</a> </p>
+                </div>
+                <div class="flex justify-between items-center font-semibold">
+                    <p>Net Total </p>
+                    <p>Rs. <%=product.price%></p>
+                </div>
+            </div>
+            <div class="w-full p-2 ">
+                <p class="text-[25px] font-semibold mb-6">Price Breakdown</p>
+                <div class="px-5 font-semibold mb-10 pb-8 border-b-2 border-gray-400">
+                    <div class="flex justify-between items-center my-2">
+                        <p>Total MRP </p>
+                        <p>Rs. <%=product.price%></p>
+                    </div>
+                    <div class="flex justify-between items-center my-2">
+                        <p>Discount on MRP </p>
+                        <p>Rs. <%= product.discount*0.01*product.price %></p>
+                    </div>
+                    <div class="flex justify-between items-center my-2">
+                        <p>Platform Fee </p>
+                        <p>Rs. 20</p>
+                    </div>
+                    <div class="flex justify-between items-center my-2">
+                        <p>Shipping Fee  </p>
+                        <p>FREE</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-[20px] font-bold">Total Amount</p>
+                    <p class="text-green-500 font-bold text-[20px]">Rs. <%= product.price - (product.discount*0.01*product.price) + 20 %></p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+</html>
