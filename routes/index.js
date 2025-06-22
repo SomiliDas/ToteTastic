@@ -21,15 +21,15 @@ router.get("/shop", isLoggedIn, async (req, res)=>{
 router.get("/cart", isLoggedIn, async(req, res)=>{
     try{
         let user = await userModel.findOne({email : req.user.email})
-        if(user.cart.length==1){
-            let productId = user.cart[0]
-            let product = await productModel.findOne({_id : productId})
-            res.render("cart" , {product})
+        let products = []
+        for(let eachProdId of user.cart){
+            let product = await productModel.findOne({_id : eachProdId})
+            products.push(product)
         }
-        else{
-            res.redirect("/shop")
-        }
-    } catch(err){
+            
+            res.render("cart" , {products})
+        
+    }catch(err){
         res.send(err.message)
     }
 })

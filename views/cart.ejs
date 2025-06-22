@@ -18,29 +18,59 @@
         </div>
         <div class="grid grid-cols-[30%_68%] gap-[2%] px-15">
 
-            <div class="w-full p-2  ">
-                <div class="bg-yellow-500 w-full h-[320px] mb-5">
-                    <img src="data:<%= product.imageType %>;base64,<%= product.image.toString('base64') %>" class="w-full h-full object-cover"/>
+                <div class="w-full p-2 h-[600px] overflow-y-auto  ">
+                <%   products.forEach((product)=>{ %>
+                            <div class="mb-15">
+                                <div class="bg-yellow-500 w-full h-[320px] mb-5">
+                                        <img src="data:<%= product.imageType %>;base64,<%= product.image.toString('base64') %>" class="w-full h-full "/>
+                                </div>
+                                <div class="flex justify-between items-center font-bold mb-5 bg-[<%= product.panelcolor%>] p-2">
+                                    <p class="text-[20px] text-[<%= product.textcolor%>]"><%= product.name%></p>
+                                    <p class="flex gap-3  text-[<%= product.textcolor%>]"> <a class="cursor-pointer" href="#">+</a> <span>01</span> <a class="cursor-pointer" href="#">-</a> </p>
+                                </div>
+                                <div class="flex justify-between items-center font-semibold">
+                                    <p>Item Cost </p>
+                                    <p>Rs. <%=product.price%></p>
+                                </div>
+                                <div class="flex justify-between items-center font-semibold">
+                                    <p>Item Discount </p>
+                                    <p>Rs. <%=product.discount%> % </p>
+                                </div>
+                            </div>
+                        
+                <%   }) %>
                 </div>
-                <div class="flex justify-between items-center font-bold mb-5">
-                    <p class="text-[20px]"><%= product.name%></p>
-                    <p class="flex gap-3"> <a class="cursor-pointer" href="#">+</a> <span>01</span> <a class="cursor-pointer" href="#">-</a> </p>
-                </div>
-                <div class="flex justify-between items-center font-semibold">
-                    <p>Net Total </p>
-                    <p>Rs. <%=product.price%></p>
-                </div>
-            </div>
-            <div class="w-full p-2 ">
+            
+
+
+            <div class="w-full pt-35 px-10">
                 <p class="text-[25px] font-semibold mb-6">Price Breakdown</p>
                 <div class="px-5 font-semibold mb-10 pb-8 border-b-2 border-gray-400">
                     <div class="flex justify-between items-center my-2">
                         <p>Total MRP </p>
-                        <p>Rs. <%=product.price%></p>
+                        <p>
+                            <%
+                              let sum = 0
+                                products.forEach((product)=>{
+                                    sum += product.price
+
+                               }) 
+                            %>
+                            Rs <%= sum %>
+                            
+                        </p>
                     </div>
                     <div class="flex justify-between items-center my-2">
-                        <p>Discount on MRP </p>
-                        <p>Rs. <%= product.discount*0.01*product.price %></p>
+                        <p>Total Discount on MRP </p>
+                        <p>
+                            <%
+                                let discount = 0
+                                products.forEach((product)=>{
+                                    discount += product.discount*0.01*product.price
+                                })
+                            %>
+                            Rs. <%= discount%>
+                        </p>
                     </div>
                     <div class="flex justify-between items-center my-2">
                         <p>Platform Fee </p>
@@ -53,7 +83,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="text-[20px] font-bold">Total Amount</p>
-                    <p class="text-green-500 font-bold text-[20px]">Rs. <%= product.price - (product.discount*0.01*product.price) + 20 %></p>
+                    <p class="text-green-500 font-bold text-[20px]">Rs. <%= sum - discount + 20 %></p>
                 </div>
             </div>
 
